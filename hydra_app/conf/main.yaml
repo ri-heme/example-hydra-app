@@ -1,0 +1,9 @@
+# @package _global_
+
+defaults:
+  - _self_
+
+hydra:
+  output_subdir: null
+
+name: Example
