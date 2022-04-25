@@ -1,3 +1,5 @@
+_target_: hydra_app.model.network.NeuralNetwork
+
 lr: 0.0001
 
 num_hidden:
