@@ -5,6 +5,7 @@ from pathlib import Path
 
 import hydra
 
+import hydra_app.conf
 
 @dataclass
 class NeuralNetwork:
@@ -20,7 +21,6 @@ def create_model() -> "NeuralNetwork":
     """Factory method. Returns a neural network object created using default
     configuration.
     """
-    config_path = Path(__file__).parents[1] / "conf"
-    with hydra.initialize_config_dir(config_path.as_posix()):
+    with hydra.initialize_config_module(hydra_app.conf.__name__):
         config = hydra.compose("main")
         return hydra.utils.instantiate(config.model)
