@@ -1,14 +1,12 @@
 import hydra
-from omegaconf import OmegaConf
 
 from hydra_app.conf import AppConfig
 
 
 @hydra.main(config_path="conf", config_name="main")
-def main(config: AppConfig) -> str:
-    txt = OmegaConf.to_yaml(config)
-    print(txt)
-    return txt
+def main(config: AppConfig) -> None:
+    net = hydra.utils.instantiate(config.model)
+    print(str(net))
 
 
 if __name__ == "__main__":

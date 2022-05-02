@@ -3,4 +3,6 @@
 name: Experiment
 
 model:
+  num_latent: 16
+  dropout: 0.0
   lr: 0.1
