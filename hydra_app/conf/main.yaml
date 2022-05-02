@@ -4,6 +4,7 @@ defaults:
   - _self_
   - model: default.yaml
   - training: default.yaml
+  - experiment: null
 
 hydra:
   output_subdir: null
