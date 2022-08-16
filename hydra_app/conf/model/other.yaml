@@ -1,0 +1,11 @@
+_target_: hydra_app.model.network.NeuralNetwork
+
+lr: 0.0003
+
+num_hidden:
+  - 100
+  - 100
+
+num_latent: 10
+
+dropout: 0.1
