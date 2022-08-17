@@ -72,7 +72,7 @@ directory structure:
 ```
 
 Then, from the command line, call the app specifying the name of the config
-file (without extension) and the path to the folder using the `-cd` argument.
+file (without extension):
 
 ```bash
 >>> python -m hydra_app +experiment=test
