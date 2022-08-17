@@ -6,7 +6,9 @@ This repo hosts an example Hydra app.
 
 ### In a Notebook
 
-Create a model in a Notebook or another script by calling `create_model`.
+Create a model in a Notebook or another script by calling `create_model`. This
+is a custom function that reads the default configuration and returns an 
+initialized class instance.
 
 ```python
 >>> from hydra_app import create_model
@@ -30,25 +32,69 @@ NeuralNetwork(num_hidden=[200, 200], num_latent=16, dropout=0.0, lr=0.1)
 
 ### From the command line
 
-Create an `my_conf/experiment` folder and place inside a config file (in the
-example below it's called `test.yaml`). Then, from the command line, call the
-app, specify the name of the config file without extension as `experiment=test`
-and the path to the folder using the `-cd` argument.
+Run:
 
 ```bash
->>> python hydra_app experiment=test -cd myconf
-NeuralNetwork(num_hidden=[200, 200], num_latent=16, dropout=0.0, lr=0.1)
+>>> python -m hydra_app
+NeuralNetwork(num_hidden=[200, 200], num_latent=20, dropout=0.2, lr=0.0001)
 ```
 
-
-You can check the default options using `--help`:
+The above command uses the default configuration. To override it, you can check 
+the default options using `--help`:
 
 ```bash
-python hydra_app --help
+>>> python -m hydra_app --help
 ```
 
-or load the "other" model which is specified in [`conf/model/other.yaml`](hydra_app/conf/model/other.yaml)
+For example, load the "other" model which is specified in 
+[`conf/model/other.yaml`](hydra_app/conf/model/other.yaml).
 
 ```bash
-python hydra_app model=other --help
+>>> python -m hydra_app model=other
+NeuralNetwork(num_hidden=[100, 100], num_latent=10, dropout=0.1, lr=0.0003)
+```
+
+#### Reading additional config files
+
+You can also read an additional file that overrides the default configuration.
+
+The app will automatically create a `config` folder in the current working 
+directory. Create an `experiment` sub-folder and place inside a config file 
+(such  as [`test.yaml`](custom_conf/experiment/test.yaml)). See below the 
+directory structure:
+
+
+```
+.
+└── config/
+    └── experiment/
+        └── test.yaml
+```
+
+Then, from the command line, call the app specifying the name of the config
+file (without extension) and the path to the folder using the `-cd` argument.
+
+```bash
+>>> python -m hydra_app +experiment=test
+NeuralNetwork(num_hidden=[100, 100], num_latent=10, dropout=0.1, lr=0.1)
+```
+
+Note that you can extend the available config options by reproducing the 
+configuration structure inside the `config` folder in your current working 
+directory. For example, adding a `model` folder with some model YAMLs:
+
+```
+.
+└── config/
+    ├── model/
+    │   ├── network1.yaml
+    │   └── network2.yaml
+    └── experiment/
+        └── test.yaml
+```
+
+will make it possible to select those model configs:
+
+```bash
+>>> python -m hydra_app model=network2 --help
 ```

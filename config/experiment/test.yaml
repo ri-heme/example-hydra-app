@@ -1,0 +1,18 @@
+# @package _global_
+
+# using the global package directive, will prevent this config from creating a
+# config group (so we can override the primary config)
+# SEE: https://hydra.cc/docs/advanced/overriding_packages/
+
+
+# use "other" model configuration (instead of "default" model)
+
+defaults:
+  - override /model: other
+
+# do more overrides
+
+name: Experiment
+
+model:
+  lr: 0.1
