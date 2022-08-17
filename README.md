@@ -35,7 +35,20 @@ example below it's called `test.yaml`). Then, from the command line, call the
 app, specify the name of the config file without extension as `experiment=test`
 and the path to the folder using the `-cd` argument.
 
-```python
+```bash
 >>> python hydra_app experiment=test -cd myconf
 NeuralNetwork(num_hidden=[200, 200], num_latent=16, dropout=0.0, lr=0.1)
+```
+
+
+You can check the default options using `--help`:
+
+```bash
+python hydra_app --help
+```
+
+or load the "other" model which is specified in [`conf/model/other.yaml`](hydra_app/conf/model/other.yaml)
+
+```bash
+python hydra_app model=other --help
 ```
