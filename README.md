@@ -60,7 +60,7 @@ You can also read an additional file that overrides the default configuration.
 
 The app will automatically create a `config` folder in the current working 
 directory. Create an `experiment` sub-folder and place inside a config file 
-(such  as [`test.yaml`](custom_conf/experiment/test.yaml)). See below the 
+(such  as [`test.yaml`](config/experiment/test.yaml)). See below the 
 directory structure:
 
 
