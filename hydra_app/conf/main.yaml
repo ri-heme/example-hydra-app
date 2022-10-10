@@ -2,11 +2,19 @@
 
 defaults:
   - _self_
-  - model: default.yaml
-  - training: default.yaml
+  - model: default
+  - training: default
 
 hydra:
   output_subdir: null
+  sweep:
+    dir: ${hydra.job.name}
+    subdir: ${hydra.job.num}
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - experiment
 
 name: Example
 seed: 123456

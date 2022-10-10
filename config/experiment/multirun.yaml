@@ -1,0 +1,13 @@
+# @package _global_
+
+name: Experiment
+
+model:
+  lr: 0.1  # fixed for all sweeps
+
+hydra:
+  mode: MULTIRUN
+  sweeper:  # will run 6 times (default-50, default-100, other-50, etc.)
+    params:
+      model: default, other, another
+      training.num_epochs: 50, 100
